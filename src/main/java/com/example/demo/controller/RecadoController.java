@@ -16,7 +16,7 @@ import com.example.demo.repository.RecadoRepository;
 import com.example.demo.responses.Response;
 
 // A anotação @RestController permite definir um controller com características API REST;
-@CrossOrigin(origins = "https://quadro-recados-frontend.herokuapp.com/", maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class RecadoController {
 	// A anotação @Autowired delega ao Spring Boot a inicialização do objeto;
