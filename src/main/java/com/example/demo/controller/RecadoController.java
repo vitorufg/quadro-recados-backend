@@ -16,19 +16,20 @@ import com.example.demo.repository.RecadoRepository;
 import com.example.demo.responses.Response;
 
 // A anotação @RestController permite definir um controller com características API REST;
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class RecadoController {
 	// A anotação @Autowired delega ao Spring Boot a inicialização do objeto;
     @Autowired
     private RecadoRepository recadoRepository;
     // A anotação @RequestMapping permite definir uma rota
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value = "/recados", method = RequestMethod.GET)
     public List<Recado> Get() {
         return recadoRepository.findAll();
     }
     
     // @PathVariable indica que o valor da variável virá de uma informação da rota;
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value = "/recados/{id}", method = RequestMethod.GET)
     public ResponseEntity<Recado> GetById(@PathVariable(value = "id") long id)
     {
@@ -43,6 +44,7 @@ public class RecadoController {
     
     // @RequestBody indica que o valor do objeto virá do corpo da requisição e 
     //              consegue mapear os dados vindos em JSON para os atributos da classe;
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value = "/recados/", method =  RequestMethod.POST)
     public ResponseEntity<Response<Recado>> Post(@Valid @RequestBody Recado recado, BindingResult result)
     {
@@ -54,8 +56,9 @@ public class RecadoController {
     	recadoRepository.save(recado);
     	response.setData(recado);
         return ResponseEntity.ok(response);
-    }        
+    }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value = "/recados/{id}", method =  RequestMethod.PUT)
     public ResponseEntity<Response<Recado>> Put(@PathVariable(value = "id") long id, @Valid @RequestBody 
     											Recado newRecado, BindingResult result)
@@ -77,8 +80,9 @@ public class RecadoController {
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }    
-    
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value = "/recados/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id)
     {
