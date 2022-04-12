@@ -26,13 +26,13 @@ public class RecadoController {
     @Autowired
     private RecadoRepository recadoRepository;
     // A anotação @RequestMapping permite definir uma rota
-    @RequestMapping(value = "/recado", method = RequestMethod.GET)
+    @RequestMapping(value = "/recados", method = RequestMethod.GET)
     public List<Recado> Get() {
         return recadoRepository.findAll();
     }
     
     // @PathVariable indica que o valor da variável virá de uma informação da rota;
-    @RequestMapping(value = "/recado/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/recados/{id}", method = RequestMethod.GET)
     public ResponseEntity<Recado> GetById(@PathVariable(value = "id") long id)
     {
     	// https://docs.oracle.com/javase/9/docs/api/java/util/Optional.html (desde v 1.8)
@@ -46,7 +46,7 @@ public class RecadoController {
     
     // @RequestBody indica que o valor do objeto virá do corpo da requisição e 
     //              consegue mapear os dados vindos em Json para os atributos da classe;
-    @RequestMapping(value = "/recado/{id}", method =  RequestMethod.POST)
+    @RequestMapping(value = "/recados/{id}", method =  RequestMethod.POST)
     public ResponseEntity<Response<Recado>> Post(@Valid @RequestBody Recado recado, BindingResult result)
     {
     	Response<Recado> response = new Response<Recado>();    	
@@ -59,7 +59,7 @@ public class RecadoController {
         return ResponseEntity.ok(response);
     }        
 
-    @RequestMapping(value = "/recado/{id}", method =  RequestMethod.PUT)
+    @RequestMapping(value = "/recados/{id}", method =  RequestMethod.PUT)
     public ResponseEntity<Response<Recado>> Put(@PathVariable(value = "id") long id, @Valid @RequestBody 
     											Recado newRecado, BindingResult result)
     {
@@ -82,7 +82,7 @@ public class RecadoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }    
     
-    @RequestMapping(value = "/recado/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/recados/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id)
     {
         Optional<Recado> recado = recadoRepository.findById(id);
