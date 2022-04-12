@@ -43,7 +43,7 @@ public class RecadoController {
     
     // @RequestBody indica que o valor do objeto virá do corpo da requisição e 
     //              consegue mapear os dados vindos em JSON para os atributos da classe;
-    @RequestMapping(value = "/recados/{id}", method =  RequestMethod.POST)
+    @RequestMapping(value = "/recados/", method =  RequestMethod.POST)
     public ResponseEntity<Response<Recado>> Post(@Valid @RequestBody Recado recado, BindingResult result)
     {
     	Response<Recado> response = new Response<Recado>();    	
